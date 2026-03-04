@@ -16,3 +16,4 @@ jobs:
       package: transformers
       languages: en
       additional_args: --emit-warning
+      doc_builder_revision: main
