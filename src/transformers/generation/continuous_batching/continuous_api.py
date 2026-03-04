@@ -759,14 +759,10 @@ class ContinuousBatchingManager:
         self._use_prefix_sharing = paged_attention_cache.use_prefix_sharing  # update the approximation
 
         # Create the scheduler
-        scheduler = None
-        if hasattr(self.generation_config, "scheduler"): # BUG
-            scheduler = SCHEDULER_MAPPING.get(self.generation_config.scheduler, None)
-            if scheduler is None:
-                logger.warning(f"Scheduler '{scheduler}' not found. Defaulting to FIFO.")
-                scheduler = FIFOScheduler
-        else:
-            # Default to fifo
+        scheduler_type = self.cb_config.scheduler_type
+        scheduler = SCHEDULER_MAPPING.get(scheduler_type, None)
+        if scheduler is None:
+            logger.warning(f"Scheduler '{scheduler_type}' not found. Defaulting to FIFO.")
             scheduler = FIFOScheduler
 
         # Create the batch processor
