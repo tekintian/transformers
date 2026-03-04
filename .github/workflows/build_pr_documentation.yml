@@ -16,4 +16,5 @@ jobs:
       package: transformers
       languages: en
       additional_args: --emit-warning
+      fail_on_warning: true
       doc_builder_revision: add-runnable-block-processing
