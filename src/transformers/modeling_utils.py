@@ -277,15 +277,15 @@ str_to_torch_dtype = {
     "U8": torch.uint8,
     "I8": torch.int8,
     "I16": torch.int16,
-    "U16": torch.uint16,
+    "U16": getattr(torch, "uint16", torch.int16),  # Fallback to int16 if uint16 is not available (PyTorch < 2.4)
     "F16": torch.float16,
     "BF16": torch.bfloat16,
     "I32": torch.int32,
-    "U32": torch.uint32,
+    "U32": getattr(torch, "uint32", torch.int32),  # Fallback to int32 if uint32 is not available (PyTorch < 2.4)
     "F32": torch.float32,
     "F64": torch.float64,
     "I64": torch.int64,
-    "U64": torch.uint64,
+    "U64": getattr(torch, "uint64", torch.int64),  # Fallback to int64 if uint64 is not available (PyTorch < 2.4)
     "F8_E4M3": torch.float8_e4m3fn,
     "F8_E5M2": torch.float8_e5m2,
 }
