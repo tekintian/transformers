@@ -176,3 +176,4 @@ tags
 # Cursor IDE files
 .cursor/
 test-results/
+conda_macos.md
